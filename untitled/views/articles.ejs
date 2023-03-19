@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Articles</title>
+</head>
+<body class="max-w-full">
+    <div class="w-full h-full flex flex-col p-4">
+        <div class="w-full h-full">
+            <h1 class="font-bold text-2xl">All Articles</h1>
+        </div>
+        <% articles.forEach((a) =>{ %>
+            <div class="bg-zinc-100 rounded flex flex-col h-60 mt-4 drop-shadow-lg p-2">
+                <h1 class="font-bold text-xl"><%= a.title %></h1>
+                <h1 class="text-gray-400"><%= a.createdAt.toLocaleDateString() %></h1>
+                <h1 class="text-base"> <%= a.sanitizedHtml %></h1>
+                <div class="flex flex-row w-full h-full items-end">
+                    <a href="<%=a.slug%>" class="bg-blue-500 px-2 py-1 rounded">Read More</a>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>

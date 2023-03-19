@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>test</title>
+</head>
+
+<body class="max-w-full">
+    <div class="max-w-full h-full flex flex-col" style="height:calc(200vh)">
+        <div class="flex flex-col max-w-full" style="height:calc(100vh)">
+            <canvas class="absolute" id="canvas"></canvas>
+            <div name="middleArea" class="absolute flex flex-row w-full h-full justify-center items-center">
+                <div class="relative flex flex-col w-full h-full justify-center items-end lg:text-5xl sm:text-xl">
+                    <p class="font-bold">Harris</p>
+                    <p class="font-bold">Lichstein</p>
+                </div>
+                <div class="absolute w-full h-full flex flow-row justify-center items-center">
+                    <a href="#"
+                        class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
+                        <i class="fa-brands fa-discord lg:text-4xl sm:text-xl"></i>
+                    </a>
+                    <a href="#"
+                        class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
+                        <i class="fa-brands fa-youtube lg:text-4xl sm:text-xl"></i>
+                    </a>
+                    <a href="#"
+                        class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
+                        <i class="fa-brands fa-twitter lg:text-4xl sm:text-xl"></i>
+                    </a>
+                    <a href="#"
+                        class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
+                        <i class="fa-brands fa-github lg:text-4xl sm:text-xl"></i>
+                    </a>
+                    <a href="#"
+                        class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
+                        <i class="fa-brands fa-google lg:text-4xl sm:text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="absolute h-8 flex flex-row w-full items-center justify-end">
+                <a href="#" class="text-base text-zinc-300 mr-2 hover:text-zinc-200">Home</a>
+                <a href="#" class="text-base text-zinc-300 mr-2 hover:text-zinc-200">Blogs</a>
+            </div>
+            <div class="flex w-full h-full justify-center items-end mb-2">
+                <i class="fa-solid fa-arrow-down text-4xl animate-bounce"></i>
+            </div>
+        </div>
+        <%- include("./partials/indexPageTwo") %>
+    </div>
+
+</body>
+<script>
+    const NUM_CONFETTI = 250;
+    const COLORS = [[255, 184, 209], [255, 22, 84], [144, 70, 207], [4, 139, 168], [121, 190, 238]];
+    const PI_2 = 2 * Math.PI;
+
+    const canvas = document.getElementById("canvas");
+    const context = canvas.getContext("2d");
+    let w = 0;
+    let h = 0;
+
+    const resizeWindow = () => {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+    };
+
+    window.addEventListener('resize', resizeWindow, false);
+
+    window.onload = () => setTimeout(resizeWindow, 0);
+
+    const range = (a, b) => (b - a) * Math.random() + a;
+
+    const drawCircle = (x, y, r, style) => {
+        context.beginPath();
+        context.arc(x, y, r, 0, PI_2, false);
+        context.fillStyle = style;
+        context.fill();
+    };
+
+    let xpos = 0.5;
+
+    document.onmousemove = (e) => {
+        xpos = e.pageX / w;
+    };
+
+    window.requestAnimationFrame = window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        ((callback) => window.setTimeout(callback, 1000 / 60));
+
+    class Confetti {
+        constructor() {
+            this.style = COLORS[Math.floor(range(0, 5))];
+            this.rgb = `rgba(${this.style[0]}, ${this.style[1]}, ${this.style[2]}`;
+            this.r = Math.floor(range(2, 6));
+            this.r2 = 2 * this.r;
+            this.replace();
+        }
+
+        replace() {
+            this.opacity = 0;
+            this.dop = 0.03 * range(1, 4);
+            this.x = range(-this.r2, w - this.r2);
+            this.y = range(-20, h - this.r2);
+            this.xmax = w - this.r;
+            this.ymax = h - this.r;
+            this.vx = range(0, 2) + 8 * xpos - 5;
+            this.vy = 0.7 * this.r + range(-1, 1);
+        }
+
+        draw() {
+            this.x += this.vx;
+            this.y += this.vy;
+            this.opacity += this.dop;
+            if (this.opacity > 1) {
+                this.opacity = 1;
+                this.dop *= -1;
+            }
+            if (this.opacity < 0 || this.y > this.ymax) {
+                this.replace();
+            }
+            if (!(0 < this.x < this.xmax)) {
+                this.x = (this.x + this.xmax) % this.xmax;
+            }
+            drawCircle(Math.floor(this.x), Math.floor(this.y), this.r, `${this.rgb}, ${this.opacity})`);
+        }
+    }
+
+    const confetti = Array.from({ length: NUM_CONFETTI }, () => new Confetti());
+
+    const step = () => {
+        window.requestAnimationFrame(step);
+        context.clearRect(0, 0, w, h);
+        confetti.forEach(c => c.draw());
+    };
+    step()
+</script>
+
+</html>

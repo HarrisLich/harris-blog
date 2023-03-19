@@ -1,0 +1,9 @@
+<div class="w-full h-full p-4 flex flex-col">
+    <input value="<%= article.title %>" required id="title" name="title" type="text" class="rounded w-full" placeholder="Title">
+    <input value="<%= article.description %>" required id="description" name="description" type="text" class="rounded w-full mt-2" placeholder="Description">
+    <textarea value="<%= article.markdown %>" required id="markdown" name="markdown" placeholder="Markdown" id="" class="rounded w-full mt-2 h-3/4" cols="30" rows="10"></textarea>
+    <div class="w-full h-fit flex flex-row">
+        <button type="submit" class="w-fit mt-2 h-fit bg-blue-500 px-2 py-1 rounded">Submit</button>
+        <a href="/" class="w-fit h-fit bg-red-500 px-2 py-1 rounded mt-2 ml-2">Cancel</a>
+    </div>
+</div>
