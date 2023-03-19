@@ -13,46 +13,43 @@
 </head>
 
 <body class="max-w-full">
-    <div class="max-w-full h-full flex flex-col" style="height:calc(200vh)">
-        <div class="flex flex-col max-w-full" style="height:calc(100vh)">
-            <canvas class="absolute" id="canvas"></canvas>
-            <div name="middleArea" class="absolute flex flex-row w-full h-full justify-center items-center">
-                <div class="relative flex flex-col w-full h-full justify-center items-end lg:text-5xl sm:text-xl">
-                    <p class="font-bold">Harris</p>
-                    <p class="font-bold">Lichstein</p>
-                </div>
-                <div class="absolute w-full h-full flex flow-row justify-center items-center">
-                    <a href="#"
-                        class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
-                        <i class="fa-brands fa-discord lg:text-4xl sm:text-xl"></i>
-                    </a>
-                    <a href="#"
-                        class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
-                        <i class="fa-brands fa-youtube lg:text-4xl sm:text-xl"></i>
-                    </a>
-                    <a href="#"
-                        class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
-                        <i class="fa-brands fa-twitter lg:text-4xl sm:text-xl"></i>
-                    </a>
-                    <a href="#"
-                        class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
-                        <i class="fa-brands fa-github lg:text-4xl sm:text-xl"></i>
-                    </a>
-                    <a href="#"
-                        class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
-                        <i class="fa-brands fa-google lg:text-4xl sm:text-xl"></i>
-                    </a>
-                </div>
+    <div class="flex flex-col max-w-full" style="height:calc(100vh)">
+        <canvas class="absolute" id="canvas"></canvas>
+        <div name="middleArea" class="absolute flex flex-row w-full h-full justify-center items-center">
+            <div class="relative flex flex-col w-full h-full justify-center items-end lg:text-5xl sm:text-xl">
+                <p class="font-bold">Harris</p>
+                <p class="font-bold">Lichstein</p>
             </div>
-            <div class="absolute h-8 flex flex-row w-full items-center justify-end">
-                <a href="#" class="text-base text-zinc-300 mr-2 hover:text-zinc-200">Home</a>
-                <a href="#" class="text-base text-zinc-300 mr-2 hover:text-zinc-200">Blogs</a>
-            </div>
-            <div class="flex w-full h-full justify-center items-end mb-2">
-                <i class="fa-solid fa-arrow-down text-4xl animate-bounce"></i>
+            <div class="absolute w-full h-full flex flow-row justify-center items-center">
+                <a href="#"
+                    class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
+                    <i class="fa-brands fa-discord lg:text-4xl sm:text-xl"></i>
+                </a>
+                <a href="#"
+                    class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
+                    <i class="fa-brands fa-youtube lg:text-4xl sm:text-xl"></i>
+                </a>
+                <a href="#"
+                    class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
+                    <i class="fa-brands fa-twitter lg:text-4xl sm:text-xl"></i>
+                </a>
+                <a href="#"
+                    class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
+                    <i class="fa-brands fa-github lg:text-4xl sm:text-xl"></i>
+                </a>
+                <a href="#"
+                    class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
+                    <i class="fa-brands fa-google lg:text-4xl sm:text-xl"></i>
+                </a>
             </div>
         </div>
-        <%- include("./partials/indexPageTwo") %>
+        <div class="absolute h-8 flex flex-row w-full items-center justify-end">
+            <a href="#" class="text-base text-zinc-300 mr-2 hover:text-zinc-200">Home</a>
+            <a href="#" class="text-base text-zinc-300 mr-2 hover:text-zinc-200">Blogs</a>
+        </div>
+        <div class="flex w-full h-full justify-center items-end mb-2">
+            <i class="fa-solid fa-arrow-down text-4xl animate-bounce"></i>
+        </div>
     </div>
 
 </body>
