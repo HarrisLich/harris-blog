@@ -44,8 +44,8 @@
             </div>
         </div>
         <div class="absolute h-8 flex flex-row w-full items-center justify-end">
-            <a href="#" class="text-base text-zinc-300 mr-2 hover:text-zinc-200">Home</a>
-            <a href="#" class="text-base text-zinc-300 mr-2 hover:text-zinc-200">Blogs</a>
+            <a href="#" <% if (page_name === 'home') { %>class="text-base text-zinc-100 mr-2 hover:text-zinc-100" <% }else{ %> class="text-base text-zinc-300 mr-2 hover:text-zinc-200" <% } %> class="">Home</a>
+            <a href="#" class="text-base text-zinc-300 mr-2 hover:text-zinc-100" >Blogs</a>
         </div>
         <div class="flex w-full h-full justify-center items-end mb-2">
             <i class="fa-solid fa-arrow-down text-4xl animate-bounce"></i>
