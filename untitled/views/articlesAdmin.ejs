@@ -19,6 +19,9 @@
                 <%- a.sanitizedHtml %>
                 <div class="flex flex-row w-full h-full items-end">
                     <a href="<%=a.slug%>" class="bg-blue-500 px-2 py-1 rounded">Read More</a>
+                    <form action="articles/<%= a.id %>?_method=DELETE" method="POST">
+                        <button type="submit" class="px-2 py-1 bg-red-500 hover:bg-red-400 rounded ml-2">Delete</button>
+                    </form>
                 </div>
             </div>
         <% }) %>

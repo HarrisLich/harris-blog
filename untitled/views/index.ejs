@@ -13,53 +13,63 @@
 </head>
 
 <body class="max-w-full">
-    <div class="flex flex-col max-w-full" style="height:calc(100vh)">
-        <canvas class="absolute" id="canvas"></canvas>
-        <div name="middleArea" class="absolute flex flex-row w-full h-full justify-center items-center">
-            <div class="relative flex flex-col w-full h-full justify-center items-end lg:text-5xl sm:text-xl right-10">
-                <p class="font-bold">Harris</p>
-                <p class="font-bold">Lichstein</p>
+    <div id="MainContainer" class="flex flex-col max-w-full" style="height:calc(200vh)">
+        <div class="flex flex-col max-w-full" style="height:calc(100vh)">
+            <canvas class="absolute" id="canvas"></canvas>
+            <div name="middleArea" class="absolute flex flex-row w-full h-full justify-center items-center">
+                <div
+                    class="relative flex flex-col w-full h-full justify-center items-end lg:text-5xl sm:text-xl right-10">
+                    <p class="font-bold">Harris</p>
+                    <p class="font-bold">Lichstein</p>
+                </div>
+                <div id="icons" class="absolute w-full h-full flex flow-row justify-center items-center">
+                    <a href="https://discordapp.com/users/1057115976895832075"
+                        class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
+                        <i class="fa-brands fa-discord lg:text-4xl sm:text-xl"></i>
+                    </a>
+                    <a href="#"
+                        class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
+                        <i class="fa-brands fa-youtube lg:text-4xl sm:text-xl"></i>
+                    </a>
+                    <a href="#"
+                        class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
+                        <i class="fa-brands fa-twitter lg:text-4xl sm:text-xl"></i>
+                    </a>
+                    <a href="https://github.com/HarrisLich"
+                        class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
+                        <i class="fa-brands fa-github lg:text-4xl sm:text-xl"></i>
+                    </a>
+                    <a href="#"
+                        class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
+                        <i class="fa-brands fa-google lg:text-4xl sm:text-xl"></i>
+                    </a>
+                </div>
             </div>
-            <div class="absolute w-full h-full flex flow-row justify-center items-center">
-                <a href="#"
-                    class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
-                    <i class="fa-brands fa-discord lg:text-4xl sm:text-xl"></i>
-                </a>
-                <a href="#"
-                    class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
-                    <i class="fa-brands fa-youtube lg:text-4xl sm:text-xl"></i>
-                </a>
-                <a href="#"
-                    class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
-                    <i class="fa-brands fa-twitter lg:text-4xl sm:text-xl"></i>
-                </a>
-                <a href="#"
-                    class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
-                    <i class="fa-brands fa-github lg:text-4xl sm:text-xl"></i>
-                </a>
-                <a href="#"
-                    class="hover:scale-110 transition rounded-full bg-zinc-100 m-2 h-fit w-fit p-2 drop-shadow-lg">
-                    <i class="fa-brands fa-google lg:text-4xl sm:text-xl"></i>
-                </a>
+            <div class="absolute h-8 flex flex-row w-full items-center justify-end">
+                <div class="flex flex-row w-full items-center justify-end">
+                    <a href="#" <% if (page_name==='home' ) { %>class="text-base text-zinc-100 mr-2 hover:text-zinc-100"
+                        <% }else{ %> class="text-base text-zinc-300 mr-2 hover:text-zinc-200" <% } %> class="">Home</a>
+                    <a href="#" class="text-base text-zinc-300 mr-2 hover:text-zinc-100">Blogs</a>
+                </div>
+                <div for="toggleSwitch" class="absolute left-2 flex flex-row w-full h-full items-center justify-start">
+                </div>
+            </div>
+            <div class="flex w-full h-full justify-center items-end mb-2">
+                <i class="fa-solid fa-arrow-down text-4xl animate-bounce"></i>
             </div>
         </div>
-        <div class="absolute h-8 flex flex-row w-full items-center justify-end">
-            <a href="#" <% if (page_name === 'home') { %>class="text-base text-zinc-100 mr-2 hover:text-zinc-100" <% }else{ %> class="text-base text-zinc-300 mr-2 hover:text-zinc-200" <% } %> class="">Home</a>
-            <a href="#" class="text-base text-zinc-300 mr-2 hover:text-zinc-100" >Blogs</a>
-        </div>
-        <div class="flex w-full h-full justify-center items-end mb-2">
-            <i class="fa-solid fa-arrow-down text-4xl animate-bounce"></i>
-        </div>
+        <%- include("./partials/indexPageTwo") %>
     </div>
 
 </body>
 <script>
     const NUM_CONFETTI = 250;
-    const COLORS = [[255, 184, 209], [255, 22, 84], [144, 70, 207], [4, 139, 168], [121, 190, 238]];
+    let COLORS = [[255, 184, 209], [255, 22, 84], [144, 70, 207], [4, 139, 168], [121, 190, 238]];
     const PI_2 = 2 * Math.PI;
 
     const canvas = document.getElementById("canvas");
     const context = canvas.getContext("2d");
+
     let w = 0;
     let h = 0;
 
@@ -133,7 +143,6 @@
     }
 
     const confetti = Array.from({ length: NUM_CONFETTI }, () => new Confetti());
-
     const step = () => {
         window.requestAnimationFrame(step);
         context.clearRect(0, 0, w, h);

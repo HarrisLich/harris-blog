@@ -5,7 +5,10 @@ const Article = require('../models/article')
 
 router.get('/', async (req,res)=>{
     let articles = await Article.find().sort({createdAt: 'desc'})
-    res.render("articles", {articles: articles})
+    if(req.isAuthenticated()){
+        res.render("articlesAdmin", {articles: articles})
+    }else{ res.render("articles", {articles: articles}) }
+    
 })
 
 router.get('/new', (req,res)=>{
@@ -15,7 +18,7 @@ router.get('/new', (req,res)=>{
 router.post('/new', async (req, res, next) => {
     req.article = new Article()
     next()
-}, saveArticleAndRedirect('new'))
+}, saveArticleAndRedirect('articles/new'))
 
 router.get('/:slug', async (req, res) => {
     const article = await Article.findOne({ slug: req.params.slug })
@@ -39,7 +42,7 @@ router.put('/:id', async (req, res, next) => {
 
 router.delete('/:id', isAuth, async (req,res)=>{
     await Article.findByIdAndDelete(req.params.id)
-    res.redirect('/')
+    res.redirect('/articles')
 })
 
 function saveArticleAndRedirect(path) {
@@ -50,9 +53,9 @@ function saveArticleAndRedirect(path) {
             article.markdown = req.body.markdown
         try {
             article = await article.save()
-            res.redirect(`/${article.slug}`)
+            res.redirect(`articles/${article.slug}`)
         } catch (e) {
-            res.render(`${path}`, { article: article })
+            res.render(`articles/${path}`, { article: article })
         }
     }
 }

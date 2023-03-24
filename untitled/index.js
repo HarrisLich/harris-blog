@@ -8,7 +8,7 @@ const session = require('express-session');
 const passport = require('passport')
 const bodyParser = require('body-parser')
 const MongoStore = require('connect-mongo')
-const passportLocal = require('passport-local')
+const Article = require('./models/article')
 const articleRouter = require('./routers/articles')
 const app = express()
 
@@ -39,8 +39,10 @@ app.use(express.static("public"))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.get("/", (req, res) => {
-    res.render("index", {page_name: "home"})
+app.get("/", async (req, res) => {
+    let recentArticle = await Article.findOne().sort({createdAt: 'desc'})
+    if(recentArticle === null){recentArticle = new Article()}
+    res.render("index", {page_name: "home", dArticle: recentArticle})
 })
 
 app.get('/register', (req, res) => {
