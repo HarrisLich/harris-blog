@@ -1,4 +1,4 @@
-require('dotenv')
+require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const User = require('./models/user')
@@ -10,6 +10,8 @@ const bodyParser = require('body-parser')
 const MongoStore = require('connect-mongo')
 const Article = require('./models/article')
 const articleRouter = require('./routers/articles')
+const path = require('path')
+const favicon = require('serve-favicon')
 const app = express()
 
 const dbString = "mongodb+srv://harrislich:_Welc0memanuel13@cluster0.amkrpdx.mongodb.net/?retryWrites=true&w=majority"
@@ -19,7 +21,7 @@ mongoose.connect(dbString)
 const sessionStore = MongoStore.create({ mongoUrl: dbString, collectionName: 'session' })
 
 app.use(session({
-    secret: "ASHJDKLSAFS21341lkjdsfa234dfSAD",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     store: sessionStore,
@@ -35,7 +37,8 @@ app.use(methodOverride('_method'))
 
 app.set('view engine', 'ejs')
 
-app.use(express.static("public"))
+app.use(express.static(path.join(__dirname, 'public')))
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
@@ -85,3 +88,5 @@ app.post('/login', passport.authenticate('local', { failureRedirect:'/login', su
 app.use("/articles", articleRouter)
 
 app.listen(80)
+
+

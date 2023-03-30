@@ -4,20 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="/css/main.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/imgs/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BLOG</title>
 </head>
 
 <body class="max-w-full">
-    <div class="w-full flex justify-center items-center" style="height:calc(100vh)">
-        <div class="w-5/6 h-5/6 bg-zinc-100 drop-shadow-xl rounded flex flex-col items-center">
+    <div class="w-full flex justify-center items-center p-4">
+        <div class="w-5/6 h-fit bg-zinc-100 drop-shadow-xl rounded flex flex-col items-center">
             <h1 class="font-bold text-2xl mt-2"><%= article.title %></h1>
             <h1 class="text-gray-400"><%= article.createdAt.toLocaleDateString() %></h1>
             <div class="flex flex-row">
-                <a href="/" class="px-2 py-1 bg-blue-500 rounded mb-2">All Articles</a>
+                <a href="/articles" class="px-2 py-1 bg-blue-500 rounded mb-2">All Articles</a>
             </div>
-            <%- article.sanitizedHtml %>
+            <div class="p-4 overflow-hidden w-full h-full">
+                <%- article.sanitizedHtml %>
+            </div>
         </div>
     </div>
 </body>

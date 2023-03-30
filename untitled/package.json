@@ -26,6 +26,10 @@
     "nodemon": "^2.0.21",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
+    "serve-favicon": "^2.5.0",
     "slugify": "^1.6.5"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.0"
   }
 }

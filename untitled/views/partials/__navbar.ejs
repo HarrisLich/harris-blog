@@ -1,0 +1,11 @@
+<div class="relative h-8 flex flex-row w-full items-center justify-end px-4 top-0">
+    <div class="flex flex-row w-full items-center justify-end">
+        <a href="/" id="home" <% if (page_name==='home' ) { %>class="text-base text-zinc-300 mr-2 hover:text-zinc-300"
+            <% }else{ %> class="text-base text-zinc-400 mr-2 hover:text-zinc-200" <% } %>>Home
+        </a>
+        <a href="/articles" id="blogs" <% if(page_name==='articles' ){ %> class="text-base text-zinc-300 mr-2
+            hover:text-zinc-300"
+            <% }else{ %> class="text-base text-zinc-400 mr-2 hover:text-zinc-300" <% } %>>Blogs
+        </a>
+    </div>
+</div>

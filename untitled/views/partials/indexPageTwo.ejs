@@ -1,22 +1,26 @@
-<div class="items-center justify-center flex flex-col w-full bg-pink-100" style="height:calc(100vh)">
-    <div class="flex w-full text-4xl items-center justify-center font-bold">
+<div id="p2" class="items-center justify-center flex flex-col w-full bg-pink-100" style="height:calc(100vh)">
+    <div id="rPostText" class="flex w-full text-4xl items-center justify-center font-bold">
         Recent Post
     </div>
-    <div class="items-center h-[90%] mt-4 mb-2 w-4/6 drop-shadow-lg flex flex-col border p-4 rounded bg-white overflow-hidden">
-        <div class="mt-2 font-bold text-xl flex">
+    <div id="rArticle" class="items-center md:h-[90%] mt-4 mb-2 w-[90%] md:w-[80%] h-[90%] drop-shadow-lg flex flex-col p-4 rounded-lg bg-white md:overflow-y-hidden overflow-y-hidden ">
+        <div class="mt-2 font-bold text-sm lg:text-xl md:text-xl flex">
             <%= dArticle.title  %>
         </div>
-        <div class="mt-2 text-base text-gray-400 flex">
+        <div class="mt-2 md:text-base lg:text-base text-sm text-gray-400 flex">
             <%= dArticle.createdAt.toLocaleDateString() %>
         </div>
-        <div class="mt-4 text-base flex flex-col">
+        <div class="text-sm md:text-sm mt-4 text-base flex flex-col overflow-y-hidden w-full h-full">
             <%- dArticle.sanitizedHtml %>
         </div>
-        <div class="w-full flex flex-row h-full items-end justify-center">
-            <a href="articles/<%=dArticle.slug%>" class="border-2 border-blue-500 px-2 py-1 hover:bg-blue-500 rounded h-fit w-fit">Read More</a>
-            <a href="articles/<%=dArticle.slug%>" class="flex items-center justify-center flex-row border-2 border-orange-500 ml-2 p-0 hover:bg-orange-500 rounded h-fit w-fit">
-                <h1 class="ml-1">All Articles</h1>
-                <?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" class="h-8 w-8 ml-1 bg-orange-500" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon points="160,128.4 192.3,96 352,256 352,256 352,256 192.3,416 160,383.6 287.3,256 "/></svg>
+        <div id="articleGradient" class="absolute bg-gradient-to-t from-white w-full h-[25%] bottom-14 flex">
+        </div>
+        <div class="w-full flex flex-row h-fit items-end justify-center">
+            <a href="articles/<%=dArticle.slug%>" class="border-4 border-blue-500 px-2 py-1 text-sm hover:bg-blue-500 rounded h-10 w-fit flex items-center justify-center">
+                <h1>Read More</h1>
+            </a>
+            <a href="/articles" class="flex items-center h-10 justify-center flex-row border-4 border-orange-500 ml-2 p-0 hover:bg-orange-500 rounded w-fit group">
+                <h1 class="ml-1 text-sm">All Articles</h1>
+                <?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" class="h-8 w-8 ml-1 text-sm bg-orange-500 group-hover:translate-x-1 transition" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon points="160,128.4 192.3,96 352,256 352,256 352,256 192.3,416 160,383.6 287.3,256 "/></svg>
             </a>
 
         </div>

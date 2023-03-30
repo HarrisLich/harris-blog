@@ -6,12 +6,12 @@ const Article = require('../models/article')
 router.get('/', async (req,res)=>{
     let articles = await Article.find().sort({createdAt: 'desc'})
     if(req.isAuthenticated()){
-        res.render("articlesAdmin", {articles: articles})
-    }else{ res.render("articles", {articles: articles}) }
+        res.render("articlesAdmin", {articles: articles, page_name: "articles"})
+    }else{ res.render("articles", {articles: articles, page_name: "articles"}) }
     
 })
 
-router.get('/new', (req,res)=>{
+router.get('/new', isAuth, (req,res)=>{
     res.render('newArticle', { article: new Article() })
 })
 
@@ -53,9 +53,9 @@ function saveArticleAndRedirect(path) {
             article.markdown = req.body.markdown
         try {
             article = await article.save()
-            res.redirect(`articles/${article.slug}`)
+            res.redirect(`${article.slug}`)
         } catch (e) {
-            res.render(`articles/${path}`, { article: article })
+            res.render(`${path}`, { article: article })
         }
     }
 }
